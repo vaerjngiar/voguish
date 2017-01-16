@@ -1,0 +1,12 @@
+<div class="head-nav">
+    <span class="menu"> </span>
+        <ul class="cl-effect-1">
+            <li {% if is_home %}class="active"{% endif %} ><a href="{% url 'home:home' %}">Home</a></li>
+            <li {% if is_about %}class="active"{% endif %} ><a href="{% url 'about:about' %}">About Us</a></li>
+            <li {% if is_services %}class="active"{% endif %} ><a href="{% url 'services:services' %}">Services</a></li>
+            <li {% if is_blog %}class="active"{% endif %} ><a href="{% url 'blog:post_list' %}">Blog</a></li>
+            <li {% if is_loghin %}class="active"{% endif %} ><a href="login.html">Login</a></li>
+            <li {% if is_contact %}class="active"{% endif %} ><a href="{% url 'contact:contact' %}">Contact</a></li>
+                        <div class="clearfix"></div>
+        </ul>
+</div>
