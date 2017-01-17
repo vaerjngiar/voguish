@@ -1,11 +1,65 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Blob{% endblock %}
+{% block title %}Blog{% endblock %}
 
 {% block navigation %}
     {% include "nav.html" with is_blog=True %}
 {% endblock %}
 
 {% block content %}
+    <div class="blog">
+
+		<div class="blog-content">
+					<div class="blog-content-left">
+						<div class="blog-articals">
+
+
+                            {% for post in posts %}
+
+                            <div class="blog-artical">
+                                <div class="blog-artical-info">
+                                    <div class="blog-artical-info-img">
+                                        <a href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}" title="post-name"></a>
+                                    </div>
+                                    <div class="blog-artical-info-head">
+                                        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                                        <h6>Posted on, {{ post.publish }} by <a href="#"> {{ post.author }}</a></h6>
+
+                                    </div>
+                                    <div class="blog-artical-info-text">
+                                        <p>{{ post.body|truncatewords:75|linebreaks }}<a href="{{ post.get_absolute_url }}">[...]</a></p>
+                                    </div>
+                                    <div class="artical-links">
+                                        <ul>
+                                            <li><small> </small><span>june 14, 2013</span></li>
+                                            <li><a href="#"><small class="admin"> </small><span>admin</span></a></li>
+                                            <li><a href="#"><small class="no"> </small><span>No comments</span></a></li>
+                                            <li><a href="#"><small class="posts"> </small><span>View posts</span></a></li>
+                                            <li><a href="#"><small class="link"> </small><span>permalink</span></a></li>
+                                        </ul>
+                                     </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+
+						{% endfor %}
+					</div>
+					<!--start-blog-pagenate-->
+							{% include "pagination.html" with page=posts %}
+				<!--//End-blog-pagenate-->
+					</div>
+					<div class="blog-content-right">
+						{% include "search.html" %}
+						<!--start-twitter-weight-->
+						{% include "twitter.html" %}
+						<!--//End-twitter-weight-->
+						<!-- start-tag-weight-->
+						{% include "tags.html" %}
+						<!---- //End-tag-weight---->
+					</div>
+					<div class="clearfix"> </div>
+
+				</div>
+		</div>
 
 {% endblock %}

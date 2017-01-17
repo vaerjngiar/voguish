@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'blog',
     'home',
     'about',
@@ -135,4 +136,10 @@ STATIC_ROOT = os.path.join("static_voguish", "static_root")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join("static_voguish", "media_root")
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'vaerjngiar@gmail.com'
+EMAIL_HOST_PASSWORD = '*****'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
