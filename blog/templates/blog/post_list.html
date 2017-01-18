@@ -10,12 +10,14 @@
     <div class="blog">
 
 		<div class="blog-content">
+
+
+
 					<div class="blog-content-left">
 						<div class="blog-articals">
 
 
-                            {% for post in posts %}
-
+                             {% for post in posts %}
                             <div class="blog-artical">
                                 <div class="blog-artical-info">
                                     <div class="blog-artical-info-img">
@@ -42,7 +44,7 @@
                                 <div class="clearfix"> </div>
                             </div>
 
-						{% endfor %}
+                    {% endfor %}
 					</div>
 					<!--start-blog-pagenate-->
 							{% include "pagination.html" with page=posts %}
