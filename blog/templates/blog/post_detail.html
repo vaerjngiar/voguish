@@ -18,60 +18,54 @@
 					<p class="sin">{{ post.body|linebreaks }}</p>
 						<div class="artical-links">
 		  						 	<ul>
-		  						 		<li><small> </small><span>june 14, 2013</span></li>
+		  						 		<li><small> </small><span>{{ post.updated }}</span></li>
 		  						 		<li><a href="#"><small class="admin"> </small><span>{{ post.author }}</span></a></li>
-		  						 		<li><a href="#"><small class="no"> </small><span>No comments</span></a></li>
+                                        {% with comments.count as total_comments %}
+		  						 		    <li><a href="#"><small class="no"> </small><span>{{ total_comments }} comment{{ total_comments|pluralize }}</span></a></li>
+                                        {% endwith %}
 		  						 		<li><a href="{% url 'blog:post_list' %}"><small class="posts"> </small><span>View posts</span></a></li>
 		  						 		<li><a href="{% url "blog:post_share" post.id %}"><small class="link"> </small><span>Share this post</span></a></li>
 		  						 	</ul>
 		  						 </div>
 						<div class="respon">
 							<h2>Responses so far</h2>
+
+                            {% for comment in comments %}
 							<div class="strator">
-								<h5>ADMINISTRATOR</h5>
-								<p>feb 20th, 2015 at 9:41 pm</p>
+								<h5>#{{ forloop.counter }} by {{ comment.name }}</h5>
+								<p>{{ comment.created }}</p>
 									<div class="strator-left">
 										<img src="{% static 'images/co.png' %}" class="img-responsive" alt="">
 									</div>
 									<div class="strator-right">
-										<p class="sin">Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra aug
-											metus auctor fringilla. Donec id elit non mi porta  da at eget me  us, tellus ac
-											ortor mauris ntum nibh, ut fermentum massa risus. Sed posuere consectetur
-											Nulla vitae elit liber. Sed posuere consectetur est at lobortis.</p>
+										<p class="sin">{{ comment.body|linebreaks }}</p>
 									</div>
 								<div class="clearfix"></div>
 								<div class="rep">
 									<a href="#" class="reply">REPLY</a>
 								</div>
 							</div>
-							<div class="strator1">
-								<h5>JANE DOE</h5>
-								<p>feb 20th, 2015 at 9:41 pm</p>
-									<div class="strator-left">
-										<img src="{% static 'images/co.png' %}" class="img-responsive" alt="">
-									</div>
-									<div class="strator-right">
-										<p class="sin">Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pti
-											metus auctor fringilla. Donec id elit non mi porta  da at eget me  us,
-											ortor mauris ntum nibh, ut fermentum massa risus. Sed posuere
-											Nulla vitae elit liber. Sed posuere consectetur.</p>
-									</div>
-								<div class="clearfix"></div>
-								<div class="rep">
-									<a href="#" class="reply">REPLY</a>
-								</div>
-							</div>
+                            {% empty %}
+                                <p>There are no comments yet.</p>
+                            {% endfor %}
+
+
 							<div class="comment">
+                                {% if new_comment %}
+                                    <h2> Your comment has been added.</h2>
+                                {% else %}
 								<h2>Leave a comment</h2>
-								<form method="post" action="">
-								 <input type="text" class="textbox" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
-								 <input type="text" class="textbox" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-								  <input type="text" class="textbox" value="Website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Website';}">
-								 <textarea value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+								<form action="." method="post">{% csrf_token %}
+								 <input type="text" name="name" class="textbox" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+								 <input type="text" name="email" class="textbox" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+{#								  <input type="text" class="textbox" value="Website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Website';}">#}
+								 <textarea name="body" value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
 								 <div class="smt1">
 									<input type="submit" value="add a comment">
 								 </div>
+
 							   </form>
+                                {% endif %}
 							</div>
 						</div>
 				</div>

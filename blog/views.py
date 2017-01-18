@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .models import Post
-from .forms import EmailPostForm
+from .models import Post, Comment
+from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 
 
@@ -27,6 +27,7 @@ class PostDetailView(DetailView):
 
 
 def post_list(request, category=None):
+    template_name = 'blog/post_list.html'
     object_list = Post.published.all()
     paginator = Paginator(object_list, 3) # 3 posts in each page
     page = request.GET.get('page')
@@ -38,17 +39,43 @@ def post_list(request, category=None):
     except EmptyPage:
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/post_list.html', {'page': page,
-                                                   'posts': posts})
+
+    context = {'page': page,
+               'posts': posts
+               }
+
+    return render(request, template_name, context)
 
 
 def post_detail(request, year, month, day, post):
+    template_name = 'blog/post_detail.html'
     post = get_object_or_404(Post, slug=post,
                                    status='published',
                                    publish__year=year,
                                    publish__month=month,
                                    publish__day=day)
-    return render(request, 'blog/post_detail.html', {'post': post})
+
+    comments = post.comments.filter(active=True)
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(data=request.POST)
+
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = post
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    context = {'post': post,
+               'comments': comments,
+                'comment_form': comment_form,
+               }
+
+    return render(request, template_name, context)
 
 
 def post_share(request, post_id):
