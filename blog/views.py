@@ -5,6 +5,7 @@ from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 from taggit.models import Tag
+from django.db.models import Q
 
 
 class PostListView(ListView):
@@ -36,6 +37,14 @@ def post_list(request, tag_slug=None):
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         object_list = object_list.filter(tags__in=[tag])
+
+    query = request.GET.get("q")
+    if query:
+        object_list = object_list.filter(
+            Q(title__icontains=query) |
+            Q(body__icontains=query)
+
+        ).distinct()
 
     paginator = Paginator(object_list, 3) # 3 posts in each page
     page = request.GET.get('page')

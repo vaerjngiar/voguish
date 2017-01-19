@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load blog_tags %}
 {% block title %}Blog{% endblock %}
 
 {% block navigation %}
@@ -15,7 +16,7 @@
 					<img src="{{ post.image.url }}" class="img-responsive" alt="">
 
 
-					<p class="sin">{{ post.body|linebreaks }}</p>
+					<p class="sin">{{ post.body|markdown }}</p>
 						<div class="artical-links">
 		  						 	<ul>
 		  						 		<li><small> </small><span>{{ post.updated }}</span></li>
@@ -38,11 +39,11 @@
 										<img src="{% static 'images/co.png' %}" class="img-responsive" alt="">
 									</div>
 									<div class="strator-right">
-										<p class="sin">{{ comment.body|linebreaks }}</p>
+										<p class="sin">{{ comment.body|markdown }}</p>
 									</div>
 								<div class="clearfix"></div>
 								<div class="rep">
-									<a href="#" class="reply">REPLY</a>
+{#									<a href="#" class="reply">REPLY</a>#}
 								</div>
 							</div>
                             {% empty %}

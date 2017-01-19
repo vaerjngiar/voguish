@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load blog_tags %}
+
 {% block title %}Blog{% endblock %}
 
 {% block navigation %}
@@ -25,11 +27,11 @@
                                     </div>
                                     <div class="blog-artical-info-head">
                                         <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-                                        <h6>Posted on, {{ post.publish }} by <a href="#"> {{ post.author }}</a></h6>
+                                        <h6>Posted on, {{ post.publish }} by <a href="{% url 'about:about' %}"> {{ post.author }}</a></h6>
 
                                     </div>
                                     <div class="blog-artical-info-text">
-                                        <p>{{ post.body|truncatewords:75|linebreaks }}<a href="{{ post.get_absolute_url }}">[...]</a></p>
+                                        <p>{{ post.body|markdown|truncatewords_html:75 }}<a href="{{ post.get_absolute_url }}">[...]</a></p>
                                     </div>
                                     <div class="artical-links">
                                         <ul>

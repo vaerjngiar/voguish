@@ -1,38 +1,25 @@
 {% load static %}
 <div class="col-md-3 bann-left">
-		{% include "search.html" %}
+    {% include "search.html" %}
+
 		<h3>Recent Posts</h3>
 		<div class="blo-top">
+
+            {% for post in latest_posts %}
+
 			<div class="blog-grids">
 				<div class="blog-grid-left">
-					<a href="single.html"><img src="{% static 'images/1b.jpg' %}" class="img-responsive" alt=""></a>
+					<a href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}" class="img-responsive" alt=""></a>
 				</div>
 				<div class="blog-grid-right">
-					<h4><a href="single.html">Little Invaders </a></h4>
-					<p>pellentesque dui, non felis. Maecenas male </p>
+					<h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+					<p>{{ post.body|truncatechars:45 }}...</p>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
-			<div class="blog-grids">
-				<div class="blog-grid-left">
-					<a href="single.html"><img src="{% static 'images/2b.jpg' %}" class="img-responsive" alt=""></a>
-				</div>
-				<div class="blog-grid-right">
-					<h4><a href="single.html">Little Invaders </a></h4>
-					<p>pellentesque dui, non felis. Maecenas male </p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="blog-grids">
-				<div class="blog-grid-left">
-					<a href=""><img src="{% static 'images/3b.jpg' %}" class="img-responsive" alt=""></a>
-				</div>
-				<div class="blog-grid-right">
-					<h4><a href="single.html">Little Invaders </a></h4>
-					<p>pellentesque dui, non felis. Maecenas male </p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+
+             {% endfor %}
+
 		</div>
 		<h3>Categories</h3>
 		<div class="blo-top">
@@ -45,17 +32,18 @@
 		</div>
 		<h3>Newsletter</h3>
 
-		<div class="blo-top">
+
+        <div class="blo-top">
+            <form method="post" action=" " >{% csrf_token %}
 			<div class="name">
-				<form>
-					<input type="text" placeholder="email" required="">
-				</form>
-			</div>
+					<input type="email" placeholder="email" name="email" required="">
+            </div>
 			<div class="button">
-				<form>
+
 					<input type="submit" value="Subscribe">
-				</form>
+
 			</div>
 				<div class="clearfix"> </div>
+            </form>
 		</div>
 	</div>
