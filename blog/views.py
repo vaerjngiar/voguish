@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView, View
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.db.models import Q
+
+from django.views.generic.base import TemplateResponseMixin, View
+
 
 
 class PostListView(ListView):
@@ -88,8 +91,8 @@ def post_detail(request, year, month, day, post):
     else:
         comment_form = CommentForm()
 
-    context = {'post': post,
-               'comments': comments,
+    context = { 'post': post,
+                'comments': comments,
                 'comment_form': comment_form,
                }
 
@@ -117,5 +120,18 @@ def post_share(request, post_id):
     return render(request, 'blog/post_share.html', {'post': post,
                                                     'form': form,
                                                     'sent': sent})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

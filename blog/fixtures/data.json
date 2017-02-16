@@ -1,0 +1,99 @@
+[
+{
+  "model": "blog.post",
+  "pk": 1,
+  "fields": {
+    "title": "Printing and typesetting industry",
+    "slug": "printing-and-typesetting-industry",
+    "author": 1,
+    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy has been the industry's standard dummy has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "publish": "2017-01-17T08:31:39Z",
+    "image": "posts/7.jpg",
+    "created": "2017-01-17T08:33:28.566Z",
+    "updated": "2017-01-18T13:20:52.220Z",
+    "status": "published"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 2,
+  "fields": {
+    "title": "Simply dummy text of the",
+    "slug": "simply-dummy-text",
+    "author": 1,
+    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy has been the industry's standard dummy has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "publish": "2017-01-17T08:33:28Z",
+    "image": "posts/8.jpg",
+    "created": "2017-01-17T08:34:18.937Z",
+    "updated": "2017-01-18T13:21:00.910Z",
+    "status": "published"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 3,
+  "fields": {
+    "title": "Lorem Ipsum de la Crua",
+    "slug": "lorem-ipsum-de-la-crua",
+    "author": 1,
+    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy has been the industry's standard dummy has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy has been the industry's standard dummy has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "publish": "2017-01-17T08:34:19Z",
+    "image": "posts/9.jpg",
+    "created": "2017-01-17T08:35:04.657Z",
+    "updated": "2017-01-18T13:20:39.005Z",
+    "status": "published"
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 1,
+  "fields": {
+    "post": 1,
+    "name": "Oleg",
+    "email": "oleg.melnic@mail.ru",
+    "body": "Message four",
+    "created": "2017-01-18T12:19:16.594Z",
+    "updated": "2017-01-18T12:19:16.594Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 2,
+  "fields": {
+    "post": 3,
+    "name": "Olegerius",
+    "email": "olegerius@yandex.ru",
+    "body": "this is a message for this post",
+    "created": "2017-01-19T07:42:19.957Z",
+    "updated": "2017-01-19T07:42:19.958Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 3,
+  "fields": {
+    "post": 2,
+    "name": "Oleg",
+    "email": "oleg.melnic@mail.ru",
+    "body": "A comment for dummy post",
+    "created": "2017-01-19T07:44:18.087Z",
+    "updated": "2017-01-19T07:44:18.087Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 4,
+  "fields": {
+    "post": 2,
+    "name": "Olegerius",
+    "email": "olegerius@yandex.ru",
+    "body": "Another comment for this wonderfull post",
+    "created": "2017-01-19T07:45:07.797Z",
+    "updated": "2017-01-19T07:45:07.797Z",
+    "active": true
+  }
+}
+]

@@ -9,10 +9,6 @@ class ContactView(FormView):
     form_class = ContactForm
     success_url = '/contact/'
 
-    def get_context_data(self, **kwargs):
-        context = super(ContactView, self).get_context_data(**kwargs)
-        return context
-
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():

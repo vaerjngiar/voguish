@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     #my app
     'blog',
     'home',
-    'about',
-    'services',
+    #'about',
+    #'services',
     'contact',
 
 ]
